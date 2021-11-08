@@ -7,7 +7,7 @@ numbers = [
 ]
 
 for i in numbers:
-    if (i % 2 == 0) and (i < 918):
+    if (i % 2 == 0) and (i <= 918):
         print(i)
     else:
         continue
