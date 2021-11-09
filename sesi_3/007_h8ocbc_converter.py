@@ -1,4 +1,5 @@
 degree_sign = u"\N{Degree Sign}"
+text = int(input('Input temperature: '))
 
 def kelvin_celcius(degrees):
     print('Kelvin to Celcius and Celcius to Kelvin Method: ')
@@ -8,16 +9,17 @@ def kelvin_celcius(degrees):
     ''' Celcius to Kelvin '''
     print(degrees,degree_sign,"Celcius is", degrees + 273,degree_sign,"Kelvin")
 
-def to_fahrenheit(degrees):
-    ''' Calling previous function '''
-    kelvin_celcius(degrees)
-    
-    print('Kelvin to Fahrenheit and Celcius to Fahrenheit Method: ')
-    
-    ''' Kelvin to Fahrenheit '''
-    print(degrees,degree_sign,"Kelvin is", (1.8 * (degrees - 273)) + 32,degree_sign,"Fahrenheit")
-    ''' Celcius to Fahrenheit '''
-    print(degrees,degree_sign,"Celcius is", (1.8 * degrees) + 32,degree_sign,"Fahrenheit")
+def to_fahrenheit(degrees,temperature):    
+    if(temperature=='Kelvin'):
+        print('Kelvin to Fahrenheit Method:')
+        ''' Kelvin to Fahrenheit '''
+        print(degrees,degree_sign,"Kelvin is", (1.8 * (degrees - 273)) + 32,degree_sign,"Fahrenheit")
+    elif(temperature=='Celcius'):
+        print('Celcius to Fahrenheit Method: ')
+        ''' Celcius to Fahrenheit '''
+        print(degrees,degree_sign,"Celcius is", (1.8 * degrees) + 32,degree_sign,"Fahrenheit")
+    else:
+        print('Invalid input')
 
 def from_fahrenheit(degrees):
     print('Fahrenheit to Kelvin and Fahrenheit to Celcius Method: ')
@@ -29,14 +31,9 @@ def from_fahrenheit(degrees):
 
 # Calling functions
 print('\n')
-kelvin_celcius(60)
+kelvin_celcius(text)
 print('\n')
-to_fahrenheit(60)
+text2 = input('Convert [Kelvin/Celcius] to Fahrenheit: ')
+to_fahrenheit(text,text2)
 print('\n')
-from_fahrenheit(60)
-
-# Print doc
-print('\n')
-print(kelvin_celcius.__doc__)
-print(to_fahrenheit.__doc__)
-print(from_fahrenheit.__doc__)
+from_fahrenheit(text)
