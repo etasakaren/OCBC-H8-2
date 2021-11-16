@@ -32,8 +32,8 @@ ns.model = (function() {
                 dataType: 'json',
                 data: JSON.stringify({
                     'name': name,
-                    'gender': gender,
-                    'director_uid': director_uid,
+                    'gender': parseInt(gender),
+                    'director_uid': parseInt(director_uid),
                     'department': department
                 })
             };
@@ -54,8 +54,8 @@ ns.model = (function() {
                 dataType: 'json',
                 data: JSON.stringify({
                     'name': name,
-                    'gender': gender,
-                    'director_uid': director_uid,
+                    'gender': parseInt(gender),
+                    'director_uid': parseInt(director_uid),
                     'department': department
                 })
             };
@@ -106,17 +106,17 @@ ns.model = (function() {
                 dataType: 'json',
                 data: JSON.stringify({
                     'original_title': original_title,
-                    'budget': budget,
-                    'popularity': popularity,
+                    'budget': parseInt(budget),
+                    'popularity': parseInt(popularity),
                     'release_date': release_date,
-                    'revenue': revenue,
+                    'revenue': parseInt(revenue),
                     'title': title,
-                    'vote_average': vote_average,
-                    'vote_count': vote_count,
+                    'vote_average': parseFloat(vote_average),
+                    'vote_count': parseInt(vote_count),
                     'overview': overview,
                     'tagline': tagline,
-                    'movie_uid': movie_uid,
-                    'director_id': director_id
+                    'movie_uid': parseInt(movie_uid),
+                    'director_id': parseInt(director_id)
                 })
             };
             $.ajax(ajax_options)
@@ -136,17 +136,17 @@ ns.model = (function() {
                 dataType: 'json',
                 data: JSON.stringify({
                     'original_title': original_title,
-                    'budget': budget,
-                    'popularity': popularity,
+                    'budget': parseInt(budget),
+                    'popularity': parseInt(popularity),
                     'release_date': release_date,
-                    'revenue': revenue,
+                    'revenue': parseInt(revenue),
                     'title': title,
-                    'vote_average': vote_average,
-                    'vote_count': vote_count,
+                    'vote_average': parseFloat(vote_average),
+                    'vote_count': parseInt(vote_count),
                     'overview': overview,
                     'tagline': tagline,
-                    'movie_uid': movie_uid,
-                    'director_id': director_id
+                    'movie_uid': parseInt(movie_uid),
+                    'director_id': parseInt(director_id)
                 })
             };
             $.ajax(ajax_options)
@@ -341,7 +341,6 @@ ns.controller = (function(m, v) {
         let director_id = $director_id.val();
 
         e.preventDefault();
-
         if (director_id != "") {
             model.delete_directors(director_id)
         } else {

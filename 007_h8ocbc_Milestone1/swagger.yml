@@ -14,11 +14,11 @@ basePath: /api
 paths:
   /directors:
     get:
-      operationId: directors.read_all
+      operationId: directors.Directors.read_all
       tags:
         - Directors
-      summary: Read the entire set of directors
-      description: Read the entire set of directors
+      summary: Read the entire set of directors, sorted by director id
+      description: Read the entire set of directors, sorted by director id
       responses:
         200:
           description: Successfully read directors set operation
@@ -43,7 +43,7 @@ paths:
                   description: Department of the director
 
     post:
-      operationId: directors.create
+      operationId: directors.Directors.create
       tags:
         - Directors
       summary: Create a director
@@ -91,7 +91,7 @@ paths:
 
   /directors/{director_id}:
     get:
-      operationId: directors.read_one
+      operationId: directors.Directors.read_one
       tags:
         - Directors
       summary: Read one director
@@ -125,7 +125,7 @@ paths:
                 description: Department of the director
 
     put:
-      operationId: directors.update
+      operationId: directors.Directors.update
       tags:
         - Directors
       summary: Update a director
@@ -175,7 +175,7 @@ paths:
                 description: Department of the director
 
     delete:
-      operationId: directors.delete
+      operationId: directors.Directors.delete
       tags:
         - Directors
       summary: Delete a director from the directors list
@@ -192,11 +192,11 @@ paths:
 
   /movies:
     get:
-      operationId: movies.read_all
+      operationId: movies.Movies.read_all
       tags:
         - Movies
-      summary: Read the entire set of movies for all directors, sorted by original title
-      description: Read the entire set of movies for all directors, sorted by original title
+      summary: Read the entire set of movies for all directors, sorted by movie id
+      description: Read the entire set of movies for all directors, sorted by movie id
       responses:
         200:
           description: Successfully read movies for all directors operation
@@ -246,7 +246,7 @@ paths:
 
   /directors/{director_id}/movies:
     post:
-      operationId: movies.create
+      operationId: movies.Movies.create
       tags:
         - Movies
       summary: Create a movie associated with a director
@@ -344,7 +344,7 @@ paths:
 
   /directors/{director_id}/movies/{movie_id}:
     get:
-      operationId: movies.read_one
+      operationId: movies.Movies.read_one
       tags:
         - Movies
       summary: Read a particular movie associated with a director
@@ -407,7 +407,7 @@ paths:
                 description: Director id of the movie
 
     put:
-      operationId: movies.update
+      operationId: movies.Movies.update
       tags:
         - Movies
       summary: Update a movie associated with a director
@@ -506,7 +506,7 @@ paths:
                 type: integer
                 description: Director id of the movie
     delete:
-      operationId: movies.delete
+      operationId: movies.Movies.delete
       tags:
         - Movies
       summary: Delete a movie associated with a director
