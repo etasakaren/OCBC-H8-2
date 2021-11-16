@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Application Home Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="static/css/home.css">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="banner">Directors & Movies Demo Application</h1>
+        <div class="section editor">
+            <label for="name">Name
+                <input id="name" type="text" />
+            </label>
+            <br />
+            <label for="director_uid">Director UID
+                <input id="director_uid" type="text" />
+            </label>
+            <label for="gender">Gender
+                <input id="gender" type="number" />
+            </label>
+            <br />
+            <label for="department">Department
+                <input id="department" type="text" />
+            </label>
+            <br />
+        </div>
+        <div class="section centers">
+            <button id="create_directors">Create Director</button>
+            <button id="update_directors">Update Director</button>
+            <button id="delete_directors">Delete Director</button>
+            <button id="reset">Reset</button>
+        </div>
+        <div class="section editor">
+            <label for="original_title">Original Title
+                <input id="original_title" type="text" />
+            </label>
+            <br />
+            <label for="movie_uid">Movie UID
+                <input id="movie_uid" type="text" />
+            </label>
+            <br />
+            <label for="budget">Budget
+                <input id="budget" type="text" />
+            </label>
+            <br />
+            <label for="popularity">Popularity
+                <input id="popularity" type="text" />
+            </label>
+            <br />
+            <label for="overview">Overview
+                <input id="overview" type="text" />
+            </label>
+            <br />
+            <label for="release_date">Release Date
+                <input id="release_date" type="text" />
+            </label>
+            <br />
+            <label for="tagline">Tagline
+                <input id="tagline" type="text" />
+            </label>
+            <br />
+            <label for="revenue">Revenue
+                <input id="revenue" type="text" />
+            </label>
+            <br />
+            <label for="title">Title
+                <input id="title" type="text" />
+            </label>
+            <br />
+            <label for="vote_average">Vote Average
+                <input id="vote_average" type="text" />
+            </label>
+            <br />
+            <label for="vote_count">Vote Count
+                <input id="vote_count" type="text" />
+            </label>
+            <br />
+            <label for="director_id" style="margin-top: 5px;">Director ID
+                <input id="director_id" type="number" />
+            </label>
+            <br/>
+            <label for="movie_id" style="margin-top: 5px;">Movie ID
+                <input id="movie_id" type="number" />
+            </label>
+            <br/>
+        </div>
+        <div class="section centers">
+            <button id="create_movies">Create Movie</button>
+            <button id="update_movies">Update Movie</button>
+            <button id="delete_movies">Delete Movie</button>
+            <button id="reset">Reset</button>
+        </div>
+    </div>
+    <div class="people">
+        <table>
+            <caption>Directors and Movies</caption>
+            <thead>
+                <tr>
+                    <th>Director ID</th>
+                    <th>Director UID</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Department</th>
+                    <th>Movie ID</th>
+                    <th>Movie UID</th>
+                    <th>Original Title</th>
+                    <th>Budget</th>
+                    <th>Popularity</th>
+                    <th>Overview</th>
+                    <th>Release Date</th>
+                    <th>Tagline</th>
+                    <th>Revenue</th>
+                    <th>Title</th>
+                    <th>Vote Average</th>
+                    <th>Vote Count</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div class="error">
+    </div>
+    </div>
+</body>
+<script src="static/js/home.js"></script>
+
+</html>
