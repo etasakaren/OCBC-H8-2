@@ -89,6 +89,77 @@ paths:
                 type: string
                 description: Department of the director
 
+  /directors/uid/{director_uid}:
+    get:
+      operationId: directors.Directors.read_one_uid
+      tags:
+        - Directors
+      summary: Read one director based with director uid
+      description: Read one director based with director uid
+      parameters:
+        - name: director_uid
+          in: path
+          description: Uid of the director to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read director from directors data operation
+          schema:
+            type: object
+            properties:
+              director_id:
+                type: integer
+                description: Id of the director
+              name:
+                type: string
+                description: Name of the director
+              gender:
+                type: integer
+                description: Gender of the director
+              director_uid:
+                type: integer
+                description: Uid of the director
+              department:
+                type: string
+                description: Department of the director
+
+  /directors/{name}:
+    get:
+      operationId: directors.Directors.read_one_name
+      tags:
+        - Directors
+      summary: Read one director based with director name
+      description: Read one director based with director name
+      parameters:
+        - name: name
+          in: path
+          description: Name of the director to get
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully read director from directors data operation
+          schema:
+            type: object
+            properties:
+              director_id:
+                type: integer
+                description: Id of the director
+              name:
+                type: string
+                description: Name of the director
+              gender:
+                type: integer
+                description: Gender of the director
+              director_uid:
+                type: integer
+                description: Uid of the director
+              department:
+                type: string
+                description: Department of the director
+
+
   /directors/{director_id}:
     get:
       operationId: directors.Directors.read_one
@@ -243,6 +314,127 @@ paths:
                 director_id:
                   type: integer
                   description: Director id of the movie
+
+  /movies/{movie_id}:
+    get:
+      operationId: movies.Movies.read_one_id
+      tags:
+        - Movies
+      summary: Read movie based with movie id
+      description: Read movie based with movie id
+      parameters:
+        - name: movie_id
+          in: path
+          description: Movie id of the movie to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read movies for all directors operation
+          schema:
+            type: array
+            items:
+              properties:
+                movie_id:
+                  type: integer
+                  description: Id of the movie
+                original_title:
+                  type: string
+                  description: Title of the movie
+                budget:
+                  type: integer
+                  description: Budget of the movie
+                popularity:
+                  type: integer
+                  description: Popularity of the movie
+                release_date:
+                  type: string
+                  description: Release date of the movie
+                revenue:
+                  type: integer
+                  description: Revenue of the movie
+                title:
+                  type: string
+                  description: Title of the movie
+                vote_average:
+                  type: number
+                  description: Vote average of the movie
+                vote_count:
+                  type: integer
+                  description: Vote count of the movie
+                overview:
+                  type: string
+                  description: Overview of the movie
+                tagline:
+                  type: string
+                  description: Tagline of the movie
+                movie_uid:
+                  type: integer
+                  description: Uid of the movie
+                director_id:
+                  type: integer
+                  description: Director id of the movie
+
+  /movies/uid/{movie_uid}:
+    get:
+      operationId: movies.Movies.read_one_uid
+      tags:
+        - Movies
+      summary: Read movie based with movie uid
+      description: Read movie based with movie uid
+      parameters:
+        - name: movie_uid
+          in: path
+          description: Movie uid of the movie to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read movies for all directors operation
+          schema:
+            type: array
+            items:
+              properties:
+                movie_id:
+                  type: integer
+                  description: Id of the movie
+                original_title:
+                  type: string
+                  description: Title of the movie
+                budget:
+                  type: integer
+                  description: Budget of the movie
+                popularity:
+                  type: integer
+                  description: Popularity of the movie
+                release_date:
+                  type: string
+                  description: Release date of the movie
+                revenue:
+                  type: integer
+                  description: Revenue of the movie
+                title:
+                  type: string
+                  description: Title of the movie
+                vote_average:
+                  type: number
+                  description: Vote average of the movie
+                vote_count:
+                  type: integer
+                  description: Vote count of the movie
+                overview:
+                  type: string
+                  description: Overview of the movie
+                tagline:
+                  type: string
+                  description: Tagline of the movie
+                movie_uid:
+                  type: integer
+                  description: Uid of the movie
+                director_id:
+                  type: integer
+                  description: Director id of the movie
+
 
   /directors/{director_id}/movies:
     post:

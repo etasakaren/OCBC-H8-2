@@ -16,7 +16,7 @@ class Movies:
         :return:                json list of all movies for all directors
         """
         # Query the database for all the movies
-        movies = Movie.query.order_by(db.desc(Movie.movie_id)).limit(5).all()
+        movies = Movie.query.order_by(db.desc(Movie.movie_id)).limit(50).all()
 
         # Serialize the list of movies from our data
         movie_schema = MovieSchema(many=True)
@@ -51,6 +51,58 @@ class Movies:
         # Otherwise, nope, didn't find that movie
         else:
             abort(404, f"Movie not found for Id: {movie_id}")
+
+    def read_one_id(movie_id):
+        """
+        This function responds to a request for /api/movies/{movie_id}
+        with one matching movie id from movies
+
+        :param id:   Movie id of movies to find
+        :return:            movies matching movie id
+        """
+        # Build the initial query
+        movie = (
+            Movie.query.filter(Movie.movie_id == movie_id)
+            .one_or_none()
+        )
+
+        # Did we find a movie?
+        if movie is not None:
+
+            # Serialize the data for the response
+            movie_schema = MovieSchema()
+            data = movie_schema.dump(movie)
+            return data
+
+        # Otherwise, nope, didn't find that movie
+        else:
+            abort(404, f"Movie not found for movie id: {movie_id}")
+
+    def read_one_uid(movie_uid):
+        """
+        This function responds to a request for /api/movies/{movie_uid}
+        with one matching movie uid from movies
+
+        :param id:   Movie uid of movies to find
+        :return:            movies matching movie uid
+        """
+        # Build the initial query
+        movie = (
+            Movie.query.filter(Movie.movie_uid == movie_uid)
+            .one_or_none()
+        )
+
+        # Did we find a movie?
+        if movie is not None:
+
+            # Serialize the data for the response
+            movie_schema = MovieSchema()
+            data = movie_schema.dump(movie)
+            return data
+
+        # Otherwise, nope, didn't find that movie
+        else:
+            abort(404, f"Movie not found for movie uid: {movie_uid}")
 
 
     def create(director_id, movie):

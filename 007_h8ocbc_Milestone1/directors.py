@@ -16,7 +16,7 @@ class Directors:
         :return:        json string of list of directors
         """
         # Create the list of directors from our data
-        directors = Director.query.order_by(Director.name).limit(5).all()
+        directors = Director.query.order_by(Director.name).limit(50).all()
 
         # Serialize the data for the response
         director_schema = DirectorSchema(many=True)
@@ -51,6 +51,59 @@ class Directors:
         else:
             abort(404, f"Director not found for Id: {director_id}")
 
+    def read_one_uid(director_uid):
+        """
+        This function responds to a request for /api/directors/{director_uid}
+        with one matching director uid from directors
+
+        :param id:   Uid of director to find
+        :return:            director matching uid
+        """
+        # Build the initial query
+        director = (
+            Director.query.filter(Director.director_uid == director_uid)
+            .outerjoin(Movie)
+            .one_or_none()
+        )
+
+        # Did we find a director?
+        if director is not None:
+
+            # Serialize the data for the response
+            director_schema = DirectorSchema()
+            data = director_schema.dump(director)
+            return data
+
+        # Otherwise, nope, didn't find that director
+        else:
+            abort(404, f"Director not found for Uid: {director_uid}")
+
+    def read_one_name(name):
+        """
+        This function responds to a request for /api/directors/{name}
+        with one matching director name from directors
+
+        :param id:   Name of director to find
+        :return:            director matching name
+        """
+        # Build the initial query
+        director = (
+            Director.query.filter(Director.name == name)
+            .outerjoin(Movie)
+            .one_or_none()
+        )
+
+        # Did we find a director?
+        if director is not None:
+
+            # Serialize the data for the response
+            director_schema = DirectorSchema()
+            data = director_schema.dump(director)
+            return data
+
+        # Otherwise, nope, didn't find that director
+        else:
+            abort(404, f"Director not found for name: {name}")
 
     def create(director):
         """
