@@ -501,8 +501,8 @@ ns.controller = (function(m, v) {
             movie_uid = $movie_uid.val('');
         e.preventDefault();
 
-        if (movie_id == '' && validate_movies(movie_id, director_id, original_title, budget, popularity, release_date, revenue, title, vote_average, vote_count, overview, tagline, movie_uid)) {
-            model.create_movies(movie_id, director_id, original_title, budget, popularity, release_date, revenue, title, vote_average, vote_count, overview, tagline, movie_uid)
+        if (movie_id == '' && validate_movies(director_id, original_title, budget, popularity, release_date, revenue, title, vote_average, vote_count, overview, tagline, movie_uid)) {
+            model.create_movies(original_title, budget, popularity, release_date, revenue, title, vote_average, vote_count, overview, tagline, movie_uid, director_id)
         } else {
             alert('Invalid input');
         }
@@ -526,7 +526,7 @@ ns.controller = (function(m, v) {
         e.preventDefault();
 
         if (director_id != "" && (movie_id != "" || movie_id != "-") &&
-            validate_movies(movie_id, director_id, original_title, budget, popularity, release_date, revenue, title, vote_average, vote_count, overview, tagline, movie_uid)) {
+            validate_movies(director_id, original_title, budget, popularity, release_date, revenue, title, vote_average, vote_count, overview, tagline, movie_uid)) {
             model.update_movies(movie_id, director_id, original_title, budget, popularity, release_date, revenue, title, vote_average, vote_count, overview, tagline, movie_uid)
         } else {
             alert('Invalid input');
