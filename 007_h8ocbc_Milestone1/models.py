@@ -7,7 +7,7 @@ class Director(db.Model):
     director_id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.String(255), nullable=False)
     gender = db.Column(db.Integer, nullable=False)
-    director_uid = db.Column(db.Integer, nullable=False)
+    director_uid = db.Column(db.Integer, nullable=False, unique=True)
     department = db.Column(db.String(255), nullable=False)
     movies = relationship("Movie", cascade="all,delete")
 
@@ -25,9 +25,9 @@ class Movie(db.Model):
     vote_count = db.Column(db.Integer, nullable=False)
     overview = db.Column(db.Text())
     tagline = db.Column(db.Text())    
-    movie_uid = db.Column(db.Integer, nullable=False)               
+    movie_uid = db.Column(db.Integer, nullable=False, unique=True)               
     director_id = db.Column(db.Integer, db.ForeignKey('directors.director_id'))
-    director = relationship("Director", cascade="all,delete")
+    director = relationship("Director")
 
 
 class DirectorSchema(ma.SQLAlchemyAutoSchema):

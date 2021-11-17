@@ -17,8 +17,8 @@ paths:
       operationId: directors.Directors.read_all
       tags:
         - Directors
-      summary: Read the entire set of directors, sorted by director id
-      description: Read the entire set of directors, sorted by director id
+      summary: Read the entire set of directors, sorted by director name
+      description: Read the entire set of directors, sorted by director name
       responses:
         200:
           description: Successfully read directors set operation
@@ -124,43 +124,7 @@ paths:
                 type: string
                 description: Department of the director
 
-  /directors/{name}:
-    get:
-      operationId: directors.Directors.read_one_name
-      tags:
-        - Directors
-      summary: Read one director based with director name
-      description: Read one director based with director name
-      parameters:
-        - name: name
-          in: path
-          description: Name of the director to get
-          type: string
-          required: True
-      responses:
-        200:
-          description: Successfully read director from directors data operation
-          schema:
-            type: object
-            properties:
-              director_id:
-                type: integer
-                description: Id of the director
-              name:
-                type: string
-                description: Name of the director
-              gender:
-                type: integer
-                description: Gender of the director
-              director_uid:
-                type: integer
-                description: Uid of the director
-              department:
-                type: string
-                description: Department of the director
-
-
-  /directors/{director_id}:
+  /directors/id/{director_id}:
     get:
       operationId: directors.Directors.read_one
       tags:
@@ -315,7 +279,7 @@ paths:
                   type: integer
                   description: Director id of the movie
 
-  /movies/{movie_id}:
+  /movies/id/{movie_id}:
     get:
       operationId: movies.Movies.read_one_id
       tags:
@@ -434,7 +398,6 @@ paths:
                 director_id:
                   type: integer
                   description: Director id of the movie
-
 
   /directors/{director_id}/movies:
     post:

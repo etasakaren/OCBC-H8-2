@@ -115,23 +115,35 @@ class Movies:
         """
         # get the parent director
         director = Director.query.filter(Director.director_id == director_id).one_or_none()
+        
+        # get movie uid
+        movie_uid = movie.get("movie_uid")
 
-        # Was a director found?
+        existing_uid = (
+            Director.query.filter(Movie.movie_uid == movie_uid)
+            .one_or_none()
+        )
+        
+        # Was a director found? Movie uid constraint?
         if director is None:
             abort(404, f"Director not found for Id: {director_id}")
+        else:
+            # Create a movie schema instance while checking Movie uid constraint
+            if existing_uid is None:
+                schema = MovieSchema()
+                new_movie = schema.load(movie, session=db.session)
 
-        # Create a movie schema instance
-        schema = MovieSchema()
-        new_movie = schema.load(movie, session=db.session)
+                # Add the movie to the director and database
+                director.movies.append(new_movie)
+                db.session.commit()
 
-        # Add the movie to the director and database
-        director.movies.append(new_movie)
-        db.session.commit()
+                # Serialize and return the newly created movie in the response
+                data = schema.dump(new_movie)
 
-        # Serialize and return the newly created movie in the response
-        data = schema.dump(new_movie)
-
-        return data, 201
+                return data, 201
+                # Otherwise, nope, movie exists already
+            else:
+                abort(409, f"Movie with uid of {movie_uid} exists already")
 
 
     def update(director_id, movie_id, movie):
@@ -150,8 +162,15 @@ class Movies:
             .one_or_none()
         )
 
+        movie_uid = movie.get("movie_uid")
+
+        existing_uid = (
+            Movie.query.filter(Movie.movie_uid == movie_uid)
+            .one_or_none()
+        )
+        
         # Did we find an existing movie?
-        if update_movie is not None:
+        if update_movie is not None and existing_uid is not None:
 
             # turn the passed in movie into a db object
             schema = MovieSchema()
@@ -160,6 +179,7 @@ class Movies:
             # Set the id's to the movie we want to update
             update.director_id = update_movie.director_id
             update.movie_id = update_movie.movie_id
+            update.movie_uid = update_movie.movie_uid
 
             # merge the new object into the old and commit it to the db
             db.session.merge(update)
@@ -172,7 +192,7 @@ class Movies:
 
         # Otherwise, nope, didn't find that movie
         else:
-            abort(404, f"Movie not found for Id: {movie_id}")
+            abort(404, f"Movie not found for Id: {movie_id} or movie uid is not allowed to be overwritten")
 
 
     def delete(director_id, movie_id):

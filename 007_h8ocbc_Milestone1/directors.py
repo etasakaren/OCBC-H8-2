@@ -113,15 +113,14 @@ class Directors:
         :param director:  director to create in directors structure
         :return:        201 on success, 406 on director exists
         """
-        name = director.get("name")
+        director_uid = director.get("director_uid")
 
-        existing_director = (
-            Director.query.filter(Director.name == name)
+        existing_uid = (
+            Director.query.filter(Director.director_uid == director_uid)
             .one_or_none()
         )
-
         # Can we insert this director?
-        if existing_director is None:
+        if existing_uid is None:
 
             # Create a director instance using the schema and the passed in director
             schema = DirectorSchema()
@@ -138,7 +137,7 @@ class Directors:
 
         # Otherwise, nope, director exists already
         else:
-            abort(409, f"Director {name} exists already")
+            abort(409, f"Director with uid of {director_uid} exists already")
 
 
     def update(director_id, director):
@@ -150,12 +149,19 @@ class Directors:
         :return:            updated director structure
         """
         # Get the director requested from the db into session
+        director_uid = director.get("director_uid")
+
+        existing_uid = (
+            Director.query.filter(Director.director_uid == director_uid)
+            .one_or_none()
+        )
+        
         update_director = Director.query.filter(
             Director.director_id == director_id
         ).one_or_none()
 
         # Did we find an existing director?
-        if update_director is not None:
+        if update_director is not None and existing_uid is not None:
 
             # turn the passed in director into a db object
             schema = DirectorSchema()
@@ -163,6 +169,7 @@ class Directors:
 
             # Set the id to the director we want to update
             update.director_id = update_director.director_id
+            update.director_uid = update_director.director_uid
 
             # merge the new object into the old and commit it to the db
             db.session.merge(update)
@@ -175,7 +182,7 @@ class Directors:
 
         # Otherwise, nope, didn't find that director
         else:
-            abort(404, f"Director not found for Id: {director_id}")
+            abort(404, f"Director not found for Id: {director_id} or director uid is not allowed to be overwritten")
 
 
     def delete(director_id):
