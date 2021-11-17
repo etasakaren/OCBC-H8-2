@@ -9,7 +9,7 @@ class Director(db.Model):
     gender = db.Column(db.Integer, nullable=False)
     director_uid = db.Column(db.Integer, nullable=False)
     department = db.Column(db.String(255), nullable=False)
-    movies = relationship("Movie")
+    movies = relationship("Movie", cascade="all,delete")
 
 
 class Movie(db.Model):
@@ -27,7 +27,7 @@ class Movie(db.Model):
     tagline = db.Column(db.Text())    
     movie_uid = db.Column(db.Integer, nullable=False)               
     director_id = db.Column(db.Integer, db.ForeignKey('directors.director_id'))
-    director = relationship("Director")
+    director = relationship("Director", cascade="all,delete")
 
 
 class DirectorSchema(ma.SQLAlchemyAutoSchema):
