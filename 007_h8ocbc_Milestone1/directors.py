@@ -16,7 +16,7 @@ class Directors:
         :return:        json string of list of directors
         """
         # Create the list of directors from our data
-        directors = Director.query.order_by(Director.director_id).all()
+        directors = Director.query.order_by(Director.name).limit(5).all()
 
         # Serialize the data for the response
         director_schema = DirectorSchema(many=True)

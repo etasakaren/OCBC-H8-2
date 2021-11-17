@@ -116,7 +116,6 @@ ns.model = (function() {
                     'overview': overview,
                     'tagline': tagline,
                     'movie_uid': parseInt(movie_uid),
-                    'director_id': parseInt(director_id)
                 })
             };
             $.ajax(ajax_options)
@@ -146,7 +145,6 @@ ns.model = (function() {
                     'overview': overview,
                     'tagline': tagline,
                     'movie_uid': parseInt(movie_uid),
-                    'director_id': parseInt(director_id)
                 })
             };
             $.ajax(ajax_options)
@@ -247,7 +245,7 @@ ns.view = (function() {
             if (directors) {
                 for (let i = 0, l = directors.length; i < l; i++)
                     if (directors[i].movies.length == 0)
-                        rows += `<tr><td class="director_id">${directors[i].director_id}</td><td class="director_uid">${directors[i].director_uid}</td><td class="name">${directors[i].name}</td><td class="gender">${directors[i].gender}</td><td class="department">${directors[i].department}</td><td class="movie_id">-</td><td class="movie_uid">-</td><td class="original_title">-</td><td class="budget">-</td><td class="popularity">-</td><td class="overview">-</td><td class="release_date">-</td><td class="tagline">-</td><td class="revenue">-</td><td class="title">-</td><td class="vote_average">-</td><td class="vote_count">-</td></tr>`;
+                        rows += `<tr><td class="director_id">${directors[i].director_id}</td><td class="director_uid">${directors[i].director_uid}</td><td class="name">${directors[i].name}</td><td class="gender">${directors[i].gender}</td><td class="department">${directors[i].department}</td><td class="movie_id"></td><td class="movie_uid"></td><td class="original_title"></td><td class="budget"></td><td class="popularity"></td><td class="overview"></td><td class="release_date"></td><td class="tagline"></td><td class="revenue"></td><td class="title"></td><td class="vote_average"></td><td class="vote_count"></td></tr>`;
                     else
                         for (let j = 0, l = directors[i].movies.length; j < l; j++)
                             rows += `<tr><td class="director_id">${directors[i].director_id}</td><td class="director_uid">${directors[i].director_uid}</td><td class="name">${directors[i].name}</td><td class="gender">${directors[i].gender}</td><td class="department">${directors[i].department}</td><td class="movie_id">${directors[i].movies[j].movie_id}</td><td class="movie_uid">${directors[i].movies[j].movie_uid}</td><td class="original_title">${directors[i].movies[j].original_title}</td><td class="budget">${directors[i].movies[j].budget}</td><td class="popularity">${directors[i].movies[j].popularity}</td><td class="overview">${directors[i].movies[j].overview}</td><td class="release_date">${directors[i].movies[j].release_date}</td><td class="tagline">${directors[i].movies[j].tagline}</td><td class="revenue">${directors[i].movies[j].revenue}</td><td class="title">${directors[i].movies[j].title}</td><td class="vote_average">${directors[i].movies[j].vote_average}</td><td class="vote_count">${directors[i].movies[j].vote_count}</td></tr>`;
@@ -486,26 +484,27 @@ ns.controller = (function(m, v) {
 
     // Create our event handlers
     $('#create_movies').click(function(e) {
-        let movie_id = $movie_id.val(''),
-            director_id = $director_id.val(''),
-            original_title = $original_title.val(''),
-            budget = $budget.val(''),
-            popularity = $popularity.val(''),
-            release_date = $release_date.val(''),
-            revenue = $revenue.val(''),
-            title = $title.val(''),
-            vote_average = $vote_average.val(''),
-            vote_count = $vote_count.val(''),
-            overview = $overview.val(''),
-            tagline = $tagline.val(''),
-            movie_uid = $movie_uid.val('');
+        let movie_id = $movie_id.val(),
+            director_id = $director_id.val(),
+            original_title = $original_title.val(),
+            budget = $budget.val(),
+            popularity = $popularity.val(),
+            release_date = $release_date.val(),
+            revenue = $revenue.val(),
+            title = $title.val(),
+            vote_average = $vote_average.val(),
+            vote_count = $vote_count.val(),
+            overview = $overview.val(),
+            tagline = $tagline.val(),
+            movie_uid = $movie_uid.val();
         e.preventDefault();
 
-        if (movie_id == '' && validate_movies(director_id, original_title, budget, popularity, release_date, revenue, title, vote_average, vote_count, movie_uid)) {
-            model.create_movies(original_title, budget, popularity, release_date, revenue, title, vote_average, vote_count, overview, tagline, movie_uid, director_id)
-        } else {
-            alert('Invalid input');
-        }
+        // if (director_id == '' &&
+        //     validate_movies(director_id, original_title, budget, popularity, release_date, revenue, title, vote_average, vote_count, movie_uid)) {
+        model.create_movies(original_title, budget, popularity, release_date, revenue, title, vote_average, vote_count, overview, tagline, movie_uid, director_id)
+            // } else {
+            //     alert('Invalid input');
+            // }
     });
 
     $('#update_movies').click(function(e) {

@@ -16,7 +16,7 @@ class Movies:
         :return:                json list of all movies for all directors
         """
         # Query the database for all the movies
-        movies = Movie.query.order_by(db.desc(Movie.movie_id)).all()
+        movies = Movie.query.order_by(db.desc(Movie.movie_id)).limit(5).all()
 
         # Serialize the list of movies from our data
         movie_schema = MovieSchema(many=True)
