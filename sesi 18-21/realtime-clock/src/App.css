@@ -1,0 +1,126 @@
+.App {
+    text-align: center;
+    width: 500px;
+    margin: 0 auto;
+    padding-top: 200px;
+    color: rgb(66, 66, 62)
+}
+
+.divider {
+    color: rgb(66, 66, 62)
+}
+
+.padding {
+    padding: 2%
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #937c9c;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 6px 6px 7px rgba(90, 90, 90, 0.31), -4px -4px 3px rgba(255, 255, 255, 0.7);
+    animation-duration: 5s;
+    animation-name: slidein;
+    animation-iteration-count: infinite;
+}
+
+.heading {
+    margin-bottom: 1rem;
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7), -1px -1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.outer-wrapper {
+    height: 80px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    padding: 2px;
+    box-shadow: 6px 6px 7px rgba(90, 90, 90, 0.31), -4px -4px 3px rgba(255, 255, 255, 0.7);
+}
+
+.inner-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 70px;
+}
+
+.clock {
+    font-size: 30px;
+    letter-spacing: 3px;
+    padding-top: 10px;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7), -1px -1px 2px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slidein {
+    from {
+        margin-top: 100%;
+        width: 300%;
+        opacity: 0.1
+    }
+    to {
+        margin-bottom: 0%;
+        width: 100%;
+        opacity: 1
+    }
+}

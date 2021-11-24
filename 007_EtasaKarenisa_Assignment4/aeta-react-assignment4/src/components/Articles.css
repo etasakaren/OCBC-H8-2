@@ -1,0 +1,33 @@
+.Articles {
+    text-align: start;
+}
+
+.PerArticle {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.ArticleTitle {
+    font-size: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.ArticleDate {
+    font-size: 15px;
+    opacity: 0.4;
+}
+
+.ArticleMore {
+    font-size: 18px;
+    padding-bottom: 20px
+}
+
+.ArticleLess {
+    font-size: 18px;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-bottom: 20px
+}

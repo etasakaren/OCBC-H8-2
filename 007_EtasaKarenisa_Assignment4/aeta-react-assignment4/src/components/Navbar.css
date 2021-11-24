@@ -1,0 +1,12 @@
+.navbar-item {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.navbar-brand,
+.navbar-menu,
+.navbar-item {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    background-color: rgb(254, 247, 255);
+}
