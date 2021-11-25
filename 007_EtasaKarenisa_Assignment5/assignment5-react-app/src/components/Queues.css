@@ -1,0 +1,71 @@
+.Queues {
+    text-align: start;
+}
+
+.PerQueue {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.QueueTitle {
+    font-size: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.QueueDate {
+    font-size: 15px;
+    opacity: 0.4;
+}
+
+.QueueMore {
+    font-size: 18px;
+    padding-bottom: 20px
+}
+
+.QueueLess {
+    font-size: 18px;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-bottom: 20px
+}
+
+.Header {
+    padding-top: 10px;
+    font-size: 30px;
+}
+
+p {
+    font-size: 20px;
+}
+
+.Card {
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+    text-align: center;
+    border: 1px solid;
+    border-color: rgba(230, 230, 230, 0.37);
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+ul {
+    background-color: rgb(191, 134, 197);
+    text-align: center;
+    border: 1px solid;
+    display: inline-block;
+    border-radius: 5px;
+    border-color: rgba(230, 230, 230, 0.37);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    color: rgb(221, 221, 221);
+    font-size: 20px;
+    font-weight: 400;
+    width: 30%
+}
+
+.PerName {
+    margin-top: 10px;
+}

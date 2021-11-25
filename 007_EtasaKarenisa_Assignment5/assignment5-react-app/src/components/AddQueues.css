@@ -1,0 +1,9 @@
+.button,
+.submit {
+    margin-top: 10px;
+}
+
+.submit {
+    max-width: 50%;
+    display: inline-block;
+}
