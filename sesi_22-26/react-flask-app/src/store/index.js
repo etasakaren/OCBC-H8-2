@@ -1,4 +1,5 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk'
 
 // const { createStore } = require('redux'); =>buat node index
 
@@ -23,7 +24,9 @@ const counter = (state = initialState, action) => {
 
 // create store here
 
-const store = createStore(counter)
+const enhancer = applyMiddleware(thunk)
+
+const store = createStore(counter, enhancer)
 
 export default store
 
