@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Outlet } from 'react-router';
+import {Link} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { increment, decrement, setCounter } from './store/actions.js'
 import Header from './components/Header'
@@ -21,9 +22,9 @@ function App() {
     <div className="App">
       <Header title="Hello, I'm from Header Child" example={showData}></Header>
       <nav>
-        <ul className="li">Home</ul>
-        <ul className="li">About</ul>
-        <ul className="li">Contact</ul>
+        <ul className="li"><Link to="/">Home</Link></ul>
+        <ul className="li"><Link to="/about">About</Link></ul>
+        <ul className="li"><Link to="/contact">Contact</Link></ul>
       </nav>
       <div>
         <h3>Counter Time:</h3>
