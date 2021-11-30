@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { connect, useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { createPeople } from "../actions/personCreateActions";
+import { updatePeople } from "../actions/personUpdateActions";
 import { fetchPeople } from "../actions/personDebugActions";
 import Header from "./Header"
 
@@ -14,35 +14,36 @@ let Loading = styled.div`
     margin-top:200px
 `
 
-function PersonForm({ personData, fetchPeople }: any) {
-    const [newKey, setNewKey] = useState('')
-    const [newFirstName, setNewFirstName] = useState('')
-    const [newLastName, setNewLastName] = useState('')
+function PersonEdit({ personData, fetchPeople }: any) {
+    const key = useParams()
+    const [newKey, setNewKey] = useState(key.key)
+    const [newFirstName, setNewFirstName] = useState(key.firstName)
+    const [newLastName, setNewLastName] = useState(key.lastName)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [isValidKey, setIsValidKey] = useState(false)
-    const [isValidFirstName, setIsValidFirstName] = useState(false)
-    const [isValidLastName, setIsValidLastName] = useState(false)
+    const [isValidKey, setIsValidKey] = useState(true)
+    const [isValidFirstName, setIsValidFirstName] = useState(true)
+    const [isValidLastName, setIsValidLastName] = useState(true)
     const [errorKey, setErrorKey] = useState('')
     const [errorFirstName, setErrorFirstName] = useState('')
     const [errorLastName, setErrorLastName] = useState('')
     const state = { button: 1 }
-    const [onValidKey, setOnValidKey] = useState(false)
-    const [onValidFirstName, setOnValidFirstName] = useState(false)
-    const [onValidLastName, setOnValidLastName] = useState(false)
+    const [onValidKey, setOnValidKey] = useState(true)
+    const [onValidFirstName, setOnValidFirstName] = useState(true)
+    const [onValidLastName, setOnValidLastName] = useState(true)
+
 
     useEffect(() => {
         fetchPeople()
     }, [])
 
     const handleSubmit = (e: any) => {
-        e.preventDefault()
         if (state.button === 1) {
-            dispatch(createPeople({
+            dispatch(updatePeople({
                 firstName: newFirstName,
                 lastName: newLastName,
                 key: newKey
-            }))
+            }, newKey))
             e.target.reset()
             setNewKey('')
             setNewFirstName('')
@@ -51,29 +52,6 @@ function PersonForm({ personData, fetchPeople }: any) {
         }
         if (state.button === 2) {
             navigate('/');
-        }
-
-    }
-
-    const onChangeKey = (e: any) => {
-        const reg = /^[0-9\b]+$/
-        setNewKey(e.target.value)
-        if (e.target.value === '') {
-            setErrorKey('Key is empty.')
-            setIsValidKey(false)
-            setOnValidKey(false)
-        } else if (!reg.test(e.target.value)) {
-            setErrorKey(`Valid key format is '0000'.`)
-            setIsValidKey(false)
-            setOnValidKey(false)
-        } else if (e.target.value.length !== 4) {
-            setErrorKey('Key field length must be 4.')
-            setIsValidKey(false)
-            setOnValidKey(false)
-        } else if (e.target.value !== '' && reg.test(e.target.value) && e.target.value.length === 4) {
-            setErrorKey('')
-            setIsValidKey(true)
-            setOnValidKey(true)
         }
     }
 
@@ -121,28 +99,26 @@ function PersonForm({ personData, fetchPeople }: any) {
         <h2>{personData.error}</h2>
     ) : (
         <>
-            <Header title="Create Person Information"></Header>
+            <Header title="Edit Person Information"></Header>
             <form onSubmit={handleSubmit} style={{ width: '500px', margin: ' 0 auto' }}>
                 <div className="field" >
                     <label className="label">Key</label>
                     <div className="control has-icons-left has-icons-right">
-                        {onValidKey === true ? <input className='input is-success' type="text" placeholder="0001" name="key" onChange={onChangeKey} maxLength={4} />
-                            : <input className='input is-danger' type="text" placeholder="0001" name="key" onChange={onChangeKey} maxLength={4} />}
+                        <input disabled className='input is-info' type="text" placeholder={key.key} defaultValue={key.key} name="key" maxLength={4} />
                         <span className="icon is-small is-left">
                             <i className="fas fa-key"></i>
                         </span>
                         <span className="icon is-small is-right">
-                            {onValidKey === true ? <i className="fas fa-check"></i>
-                                : <i className="fas fa-ban"></i>}
+                            <i className="fas fa-lock"></i>
                         </span>
                     </div>
-                    {isValidKey === false ? <p className="help is-danger">{errorKey}</p> : <p className="help is-success">Key format is correct.</p>}
+                    <p className="help is-info">Key cannot be edited.</p>
                 </div>
                 <div className="field">
                     <label className="label">First Name</label>
                     <div className="control has-icons-left has-icons-right">
-                        {onValidFirstName === true ? <input className='input is-success' type="text" placeholder="John" name="firstName" onChange={onChangeFirstName} />
-                            : <input className='input is-danger' type="text" placeholder="John" name="firstName" onChange={onChangeFirstName} />}
+                        {onValidFirstName === true ? <input className='input is-success' type="text" placeholder={key.firstName} defaultValue={key.firstName} name="firstName" onChange={onChangeFirstName} />
+                            : <input className='input is-danger' type="text" placeholder={key.firstName} defaultValue={key.firstName} name="firstName" onChange={onChangeFirstName} />}
                         <span className="icon is-small is-left">
                             <i className="fas fa-user"></i>
                         </span>
@@ -156,8 +132,8 @@ function PersonForm({ personData, fetchPeople }: any) {
                 <div className="field">
                     <label className="label">Last Name</label>
                     <div className="control has-icons-left has-icons-right">
-                        {onValidLastName === true ? <input className='input is-success' type="text" placeholder="Doe" name="lastName" onChange={onChangeLastName} />
-                            : <input className='input is-danger' type="text" placeholder="Doe" name="lastName" onChange={onChangeLastName} />}
+                        {onValidLastName === true ? <input className='input is-success' type="text" placeholder={key.lastName} defaultValue={key.lastName} name="lastName" onChange={onChangeLastName} />
+                            : <input className='input is-danger' type="text" placeholder={key.lastName} defaultValue={key.lastName} name="lastName" onChange={onChangeLastName} />}
                         <span className="icon is-small is-left">
                             <i className="fas fa-user"></i>
                         </span>
@@ -171,8 +147,10 @@ function PersonForm({ personData, fetchPeople }: any) {
                 <div className="field is-grouped">
                     <div className="control">
                         <button className="button is-link "
-                            onClick={() => (state.button = 1)} disabled={errorKey !== '' || errorFirstName !== '' || errorLastName !== ''
-                                || isValidKey === false || isValidFirstName === false || isValidLastName === false}>Submit</button>
+                            onClick={() => (state.button = 1)}
+                        disabled={errorKey !== '' || errorFirstName !== '' || errorLastName !== ''
+                            || isValidKey === false || isValidFirstName === false || isValidLastName === false}
+                        >Submit</button>
                     </div>
                     <div className="control">
                         <button className="button is-link is-light" onClick={() => (state.button = 2)}>Cancel</button>
@@ -198,4 +176,4 @@ const mapDispatchToProps = (dispatch: any) => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(PersonForm)
+)(PersonEdit)

@@ -65,6 +65,13 @@ function PeopleList({ personData, fetchPeople }: any) {
         navigate(`/PersonEdit/${firstName}/${lastName}/${key}`)
     }
 
+    const handleOne = (key: any, firstName: any, lastName: any) => {
+        setKey(key)
+        setFirstName(firstName)
+        setLastName(lastName)
+        navigate(`/PersonDetails/${firstName}/${lastName}/${key}`)
+    }
+
     return personData.loading ? (
         <>
             <Loading>Loading...</Loading>
@@ -107,6 +114,7 @@ function PeopleList({ personData, fetchPeople }: any) {
                                 <th>First Name</th>
                                 <th>Action 1</th>
                                 <th>Action 2</th>
+                                <th>Action 3</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -116,37 +124,47 @@ function PeopleList({ personData, fetchPeople }: any) {
                                 sortKey === "Sort by Key (Asc.)" ? Object.values(personData.people)
                                     .sort((a: any, b: any) => a.key > b.key ? 1 : -1)
                                     .map((person: any, index: any) => {
-                                        return <tr key={index}><td>{index + 1}</td><td>{person.key}</td><td >{person.firstName}</td><td>
+                                        return <tr key={index} ><td>{index + 1}</td><td>{person.key}</td><td >{person.firstName}</td><td>
                                             <Button1 className="button is-danger is-focused is-centered" onClick={() => handleDelete(person.key, person.firstName, person.lastName)}>Delete</Button1>
                                         </td><td>
                                                 <Button1 className="button is-warning is-focused is-centered" onClick={() => handleEdit(person.key, person.firstName, person.lastName)}>Edit</Button1>
+                                            </td><td>
+                                                <Button1 className="button is-primary is-focused is-centered" onClick={() => handleOne(person.key, person.firstName, person.lastName)}>Read Details</Button1>
                                             </td></tr>
                                     })
                                 : sortKey === "Sort by Key (Desc.)" ? Object.values(personData.people)
                                     .sort((a: any, b: any) => a.key < b.key ? 1 : -1)
                                     .map((person: any, index: any) => {
-                                        return <tr key={index}><td>{index + 1}</td><td>{person.key}</td><td >{person.firstName}</td><td>
+                                        return <tr key={index} ><td>{index + 1}</td><td>{person.key}</td><td >{person.firstName}</td><td>
                                             <Button1 className="button is-danger is-focused is-centered" onClick={() => handleDelete(person.key, person.firstName, person.lastName)}>Delete</Button1>
                                         </td><td>
                                                 <Button1 className="button is-warning is-focused is-centered" onClick={() => handleEdit(person.key, person.firstName, person.lastName)}>Edit</Button1>
+                                            </td>
+                                            <td>
+                                                <Button1 className="button is-primary is-focused is-centered" onClick={() => handleOne(person.key, person.firstName, person.lastName)}>Read Details</Button1>
                                             </td></tr>
                                     })
                                     : sortKey === "Sort by Name (Asc.)" ? Object.values(personData.people)
                                         .sort((a: any, b: any) => a.firstName > b.firstName ? 1 : -1)
                                         .map((person: any, index: any) => {
-                                            return <tr key={index}><td>{index + 1}</td><td>{person.key}</td><td >{person.firstName}</td><td>
+                                            return <tr key={index} ><td>{index + 1}</td><td>{person.key}</td><td >{person.firstName}</td><td>
                                                 <Button1 className="button is-danger is-focused is-centered" onClick={() => handleDelete(person.key, person.firstName, person.lastName)}>Delete</Button1>
                                             </td><td>
                                                     <Button1 className="button is-warning is-focused is-centered" onClick={() => handleEdit(person.key, person.firstName, person.lastName)}>Edit</Button1>
+                                                </td><td>
+                                                    <Button1 className="button is-primary is-focused is-centered" onClick={() => handleOne(person.key, person.firstName, person.lastName)}>Read Details</Button1>
                                                 </td></tr>
                                         })
                                         : sortKey === "Sort by Name (Desc.)" ? Object.values(personData.people)
                                             .sort((a: any, b: any) => a.firstName < b.firstName ? 1 : -1)
                                             .map((person: any, index: any) => {
-                                                return <tr key={index}><td>{index + 1}</td><td>{person.key}</td><td >{person.firstName}</td><td>
+                                                return <tr key={index} ><td>{index + 1}</td><td>{person.key}</td><td >{person.firstName}</td><td>
                                                     <Button1 className="button is-danger is-focused is-centered" onClick={() => handleDelete(person.key, person.firstName, person.lastName)}>Delete</Button1>
                                                 </td><td>
                                                         <Button1 className="button is-warning is-focused is-centered" onClick={() => handleEdit(person.key, person.firstName, person.lastName)}>Edit</Button1>
+                                                    </td><td>
+                                                        <Button1 className="button is-primary is-focused is-centered" onClick={() => handleOne(person.key, person.firstName, person.lastName)}>Read Details</Button1>
+
                                                     </td></tr>
                                             })
                                             : <p></p>

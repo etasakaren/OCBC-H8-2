@@ -10,6 +10,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import PeopleList from './components/PeopleList';
 import PersonForm from './components/PersonForm';
 import PersonDelete from './components/PersonDelete';
+import PersonEdit from './components/PersonEdit';
+import PersonDetails from './components/PersonDetails';
 
 ReactDOM.render(
   <>
@@ -23,6 +25,8 @@ ReactDOM.render(
               <Route index element={<PeopleList />}></Route>
               <Route path="PersonForm" element={<PersonForm />}></Route>
               <Route path="PersonDelete/:firstName/:lastName/:key" element={<PersonDelete />}></Route>
+              <Route path="PersonEdit/:firstName/:lastName/:key" element={<PersonEdit />}></Route>
+              <Route path="PersonDetails/:firstName/:lastName/:key" element={<PersonDetails />}></Route>
             </Route>
           </Routes>
         </BrowserRouter>

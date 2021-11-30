@@ -1,3 +1,5 @@
 export * from '../actions/personDebugActions'
 export * from '../actions/personCreateActions'
 export * from '../actions/personDeleteActions'
+export * from '../actions/personUpdateActions'
+export * from '../actions/personOneActions'
