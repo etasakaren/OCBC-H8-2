@@ -2,7 +2,7 @@ import {
     FETCH_PEOPLE_REQUEST,
     FETCH_PEOPLE_SUCCESS,
     FETCH_PEOPLE_FAILURE
-} from '../types/personTypes'
+} from '../types/personDebugTypes'
 
 const initialState = {
     loading: false,
@@ -10,7 +10,7 @@ const initialState = {
     error: ''
 }
 
-const reducer = (state = initialState, action: any) => {
+const personDebugReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case FETCH_PEOPLE_REQUEST:
             return {
@@ -33,4 +33,4 @@ const reducer = (state = initialState, action: any) => {
     }
 }
 
-export default reducer
+export default personDebugReducer

@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux'
-import personReducer from './personReducer'
+import personDebugReducer from './personDebugReducer'
+import personCreateReducer from './personCreateReducer'
+import personDeleteReducer from './personDeleteReducer'
 
 const rootReducer = combineReducers({
-  person: personReducer
+  personDebug: personDebugReducer,
+  personCreate: personCreateReducer,
+  personDelete: personDeleteReducer
 })
 
 export default rootReducer

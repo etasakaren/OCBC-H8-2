@@ -4,11 +4,31 @@ import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import store from './store/store';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import PeopleList from './components/PeopleList';
+import PersonForm from './components/PersonForm';
+import PersonDelete from './components/PersonDelete';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"></link>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma-rtl.min.css"></link>
+    <React.StrictMode>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<App />}>
+              <Route index element={<PeopleList />}></Route>
+              <Route path="PersonForm" element={<PersonForm />}></Route>
+              <Route path="PersonDelete/:firstName/:lastName/:key" element={<PersonDelete />}></Route>
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+    </React.StrictMode>
+  </>,
   document.getElementById('root')
 );
 

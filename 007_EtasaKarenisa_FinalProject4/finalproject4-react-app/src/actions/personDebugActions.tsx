@@ -3,7 +3,7 @@ import {
     FETCH_PEOPLE_REQUEST,
     FETCH_PEOPLE_SUCCESS,
     FETCH_PEOPLE_FAILURE
-} from '../types/personTypes'
+} from '../types/personDebugTypes'
 
 export const fetchPeople = () => {
     return (dispatch: any) => {
