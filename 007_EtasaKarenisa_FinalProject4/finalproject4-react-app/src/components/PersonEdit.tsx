@@ -49,6 +49,7 @@ function PersonEdit({ personData, fetchPeople }: any) {
             setNewKey('')
             setNewFirstName('')
             setNewLastName('')
+            alert(`Successfully edited data.`)
             navigate('/');
         }
         if (state.button === 2) {

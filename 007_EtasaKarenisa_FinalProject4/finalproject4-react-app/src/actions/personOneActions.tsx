@@ -16,6 +16,7 @@ export const fetchPerson = (key: any) => {
             })
             .catch((error: any) => {
                 dispatch(fetchPersonFailure(error.message))
+                alert(`Something went wrong.`)
             })
     }
 }

@@ -17,6 +17,7 @@ export const fetchPeople = () => {
                 })
                 .catch((error: any) => {
                     dispatch(fetchPeopleFailure(error.message))
+                    alert(`Something went wrong.`)
                 })
         }, 1000)
     }

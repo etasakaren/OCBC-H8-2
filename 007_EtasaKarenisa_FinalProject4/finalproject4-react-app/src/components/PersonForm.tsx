@@ -47,7 +47,8 @@ function PersonForm({ personData, fetchPeople }: any) {
             setNewKey('')
             setNewFirstName('')
             setNewLastName('')
-            navigate('/');
+            alert(`Successfully added data.`)
+            navigate('/')
         }
         if (state.button === 2) {
             navigate('/');

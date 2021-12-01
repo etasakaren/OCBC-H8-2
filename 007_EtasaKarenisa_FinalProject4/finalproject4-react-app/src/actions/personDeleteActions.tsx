@@ -14,7 +14,6 @@ export const deletePeople = (key: any) => {
             .then((response: any) => {
                 const people = response.data
                 dispatch(deletePeopleSuccess(people))
-                alert(`Successfully deleted data.`)
             })
             .catch((error: any) => {
                 dispatch(deletePeopleFailure(error.message))

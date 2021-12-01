@@ -18,7 +18,7 @@ export const createPeople = (newInput: any) => {
             .then((response: any) => {
                 const people = response.data
                 dispatch(createPeopleSuccess(people))
-                alert(`Successfully added data.`)
+
             })
             .catch((error: any) => {
                 dispatch(createPeopleFailure(error.message))

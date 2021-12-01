@@ -111,15 +111,15 @@ function PeopleList({ personData, fetchPeople }: any) {
                     </div>
                 </div>
                 <div style={{ width: '700px', margin: ' 0 auto' }}>
-                    <table className="table is-striped is-bordered is-narrow is-hoverable is-fullwidth" style={{ textAlign: 'left' }}>
+                    <table className="table is-striped is-hoverable is-fullwidth" style={{ textAlign: 'left' }}>
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Key</th>
                                 <th>First Name</th>
-                                <th>Action 1</th>
-                                <th>Action 2</th>
-                                <th>Action 3</th>
+                                <th></th>
+                                <th>Actions</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>

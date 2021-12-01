@@ -18,11 +18,10 @@ export const updatePeople = (newInput: any, key: any) => {
             .then((response: any) => {
                 const people = response.data
                 dispatch(updatePeopleSuccess(people))
-                alert(`Successfully edited data.`)
             })
             .catch((error: any) => {
                 dispatch(updatePeopleFailure(error.message))
-                // alert(`Invalid input or 'Key' is duplicate.`)
+                alert(`Something went wrong.`)
             })
     }
 }

@@ -32,10 +32,11 @@ function PersonDelete({ personData, fetchPeople }: any) {
     const handleSubmit = () => {
         if (state.button === 1) {
             dispatch(deletePeople(key.key))
+            alert(`Successfully deleted data.`)
             navigate('/')
         }
         if (state.button === 2) {
-            navigate('/');
+            navigate('/')
         }
     }
 
