@@ -40,16 +40,9 @@ function PeopleList({ personData, fetchPeople }: any) {
         }
     }
 
-    const handleSort = () => {
-        if (sortKey === "Sort by Key (Asc.)") {
-            setSortKey("Sort by Key (Asc.)")
-        } else if (sortKey === "Sort by Key (Desc.)") {
-            setSortKey("Sort by Key (Desc.)")
-        } else if (sortKey === "Sort by Name (Asc.)") {
-            setSortKey("Sort by Name (Asc.)")
-        } else if (sortKey === "Sort by Name (Desc.)") {
-            setSortKey("Sort by Name (Desc.)")
-        }
+    const handleSort = (e: any) => {
+        setSortKey(e)
+        setUseDropdown(false)
     }
 
     const handleDelete = (key: any, firstName: any, lastName: any) => {
@@ -92,8 +85,8 @@ function PeopleList({ personData, fetchPeople }: any) {
                     <div style={{ marginRight: "15px" }}></div>
                     <div className="container">
                         <div className="control" >
-                            <button className="button" type="button" onClick={() => handleDropdown()} >
-                                <span>{sortKey}</span>
+                            <button className="button" type="button" onClick={() => handleDropdown()}>
+                                <p>{sortKey}</p>
                                 <div style={{ marginRight: "15px" }}></div>
                                 <span className="icon is-small">
                                     <i className="fas fa-angle-down" aria-hidden="true"></i>
@@ -101,10 +94,10 @@ function PeopleList({ personData, fetchPeople }: any) {
                             </button>
                             {useDropdown === true ? <div className={"box dropdown"}>
                                 <ul>
-                                    <li className="nav-item" ><button className="button is-ghost" onClick={() => handleSort()} style={{ textDecoration: "none", color: "#343434" }}>Sort by Key (Asc.)</button></li>
-                                    <li className="nav-item" ><button className="button is-ghost" onClick={() => handleSort()} style={{ textDecoration: "none", color: "#343434" }}>Sort by Key (Desc.)</button></li>
-                                    <li className="nav-item" ><button className="button is-ghost" onClick={() => handleSort()} style={{ textDecoration: "none", color: "#343434" }}>Sort by Name (Asc.)</button></li>
-                                    <li className="nav-item" ><button className="button is-ghost" onClick={() => handleSort()} style={{ textDecoration: "none", color: "#343434" }}>Sort by Name (Desc.)</button></li>
+                                    <li className="nav-item" ><button className="button is-ghost" onClick={() => handleSort('Sort by Key (Asc.)')} style={{ textDecoration: "none", color: "#343434" }}>Sort by Key (Asc.)</button></li>
+                                    <li className="nav-item" ><button className="button is-ghost" onClick={() => handleSort('Sort by Key (Desc.)')} style={{ textDecoration: "none", color: "#343434" }}>Sort by Key (Desc.)</button></li>
+                                    <li className="nav-item" ><button className="button is-ghost" onClick={() => handleSort('Sort by Name (Asc.)')} style={{ textDecoration: "none", color: "#343434" }}>Sort by Name (Asc.)</button></li>
+                                    <li className="nav-item" ><button className="button is-ghost" onClick={() => handleSort('Sort by Name (Desc.)')} style={{ textDecoration: "none", color: "#343434" }}>Sort by Name (Desc.)</button></li>
                                 </ul>
                             </div> : <p></p>}
                         </div>
