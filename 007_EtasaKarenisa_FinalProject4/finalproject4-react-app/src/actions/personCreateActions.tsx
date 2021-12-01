@@ -6,10 +6,10 @@ import {
 } from '../types/personCreateTypes'
 
 export const createPeople = (newInput: any) => {
-    return (dispatch: any) => {
+    return async (dispatch: any) => {
         dispatch(createPeopleRequest())
-        axios.post(
-            "http://localhost:5000/keys", {
+        await axios.post(
+            `http://localhost:5000/keys`, {
             firstName: newInput.firstName,
             lastName: newInput.lastName,
             key: newInput.key

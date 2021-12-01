@@ -6,17 +6,19 @@ import {
 } from '../types/personDebugTypes'
 
 export const fetchPeople = () => {
-    return (dispatch: any) => {
+    return async (dispatch: any) => {
         dispatch(fetchPeopleRequest())
-        axios
-            .get('http://localhost:5000/debug')
-            .then((response: any) => {
-                const people = response.data
-                dispatch(fetchPeopleSuccess(people))
-            })
-            .catch((error: any) => {
-                dispatch(fetchPeopleFailure(error.message))
-            })
+        setTimeout(() => {
+            axios
+                .get('http://localhost:5000/debug')
+                .then((response: any) => {
+                    const people = response.data
+                    dispatch(fetchPeopleSuccess(people))
+                })
+                .catch((error: any) => {
+                    dispatch(fetchPeopleFailure(error.message))
+                })
+        }, 1000)
     }
 }
 

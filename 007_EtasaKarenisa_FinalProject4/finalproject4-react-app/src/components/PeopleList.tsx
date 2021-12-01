@@ -12,11 +12,12 @@ let Button1 = styled.div`
 `
 
 let Loading = styled.div`
-    font-size: 30px;
+    font-size: 50px;
     font-weight: thin;
     opacity: 0.5;
     text-align: center;
-    margin-top:200px
+    margin-top:200px;
+    margin-bottom:200px
 `
 
 function PeopleList({ personData, fetchPeople }: any) {
@@ -74,7 +75,11 @@ function PeopleList({ personData, fetchPeople }: any) {
 
     return personData.loading ? (
         <>
-            <Loading>Loading...</Loading>
+            <Loading>
+                <span className="icon">
+                    <i className="fas fa-circle-notch fa-spin"></i>
+                </span>
+            </Loading>
         </>
     ) : personData.error ? (
         <h2>{personData.error}</h2>

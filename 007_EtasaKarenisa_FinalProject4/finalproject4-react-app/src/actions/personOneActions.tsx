@@ -6,9 +6,9 @@ import {
 } from '../types/personOneTypes'
 
 export const fetchPerson = (key: any) => {
-    return (dispatch: any) => {
+    return async (dispatch: any) => {
         dispatch(fetchPersonRequest())
-        axios
+        await axios
             .get(`http://localhost:5000/keys/${key}`)
             .then((response: any) => {
                 const person = response.data

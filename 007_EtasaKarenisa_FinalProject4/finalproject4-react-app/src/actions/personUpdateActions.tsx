@@ -6,9 +6,9 @@ import {
 } from '../types/personUpdateTypes'
 
 export const updatePeople = (newInput: any, key: any) => {
-    return (dispatch: any) => {
+    return async (dispatch: any) => {
         dispatch(updatePeopleRequest())
-        axios.put(
+        await axios.put(
             `http://localhost:5000/keys/${key}`, {
             firstName: newInput.firstName,
             lastName: newInput.lastName,
